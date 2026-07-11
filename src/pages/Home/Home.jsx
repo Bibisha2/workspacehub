@@ -1,11 +1,9 @@
-import Features from "../../components/home/Features";
 import Hero from "../../components/home/Hero";
-import Navbar from "../../components/layout/Navbar";
+import Features from "../../components/home/Features";
 
 function Home() {
   return (
     <>
-      <Navbar />
       <Hero />
       <Features />
     </>
