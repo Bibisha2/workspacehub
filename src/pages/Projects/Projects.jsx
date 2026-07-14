@@ -1,10 +1,11 @@
+import DashboardLayout from "../../layouts/DashboardLayout";
+import ProjectTable from "../../components/projects/ProjectTable";
+
 function Projects() {
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold">
-        Projects
-      </h1>
-    </div>
+    <DashboardLayout>
+      <ProjectTable />
+    </DashboardLayout>
   );
 }
 

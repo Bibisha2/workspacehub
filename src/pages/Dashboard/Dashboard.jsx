@@ -15,9 +15,7 @@ function Dashboard() {
         <RecentProjects />
         <RecentTasks />
       </div>
-      <div className="mt-8">
-    <EmployeeTable />
-  </div>
+      
     </DashboardLayout>
   );
 }

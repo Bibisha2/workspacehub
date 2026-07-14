@@ -1,10 +1,11 @@
+import DashboardLayout from "../../layouts/DashboardLayout";
+import EmployeeTable from "../../components/dashboard/EmployeeTable";
+
 function Employees() {
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold">
-        Employees
-      </h1>
-    </div>
+    <DashboardLayout>
+      <EmployeeTable />
+    </DashboardLayout>
   );
 }
 

@@ -1,10 +1,11 @@
+import DashboardLayout from "../../layouts/DashboardLayout";
+import TaskTable from "../../components/tasks/TaskTable";
+
 function Tasks() {
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold">
-        Tasks
-      </h1>
-    </div>
+    <DashboardLayout>
+      <TaskTable />
+    </DashboardLayout>
   );
 }
 

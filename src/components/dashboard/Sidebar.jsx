@@ -18,8 +18,7 @@ const menuItems = [
 
 function Sidebar() {
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-slate-900 text-white flex flex-col">
-
+    <aside className="h-screen w-64 bg-slate-900 text-white flex flex-col">
       <div className="p-6 border-b border-slate-700">
         <h1 className="text-2xl font-bold text-blue-400">
           WorkspaceHub

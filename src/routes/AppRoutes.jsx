@@ -12,6 +12,7 @@ import Tasks from "../pages/Tasks/Tasks";
 import Profile from "../pages/Profile/Profile";
 import NotFound from "../pages/Error/NotFound";
 
+
 function AppRoutes() {
   return (
     <Routes>
@@ -31,6 +32,7 @@ function AppRoutes() {
       <Route path="/projects" element={<Projects />} />
       <Route path="/tasks" element={<Tasks />} />
       <Route path="/profile" element={<Profile />} />
+
 
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
