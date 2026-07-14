@@ -2,16 +2,32 @@ function Button({
   children,
   type = "button",
   variant = "primary",
+  fullWidth = false,
   className = "",
   ...props
 }) {
-  const base =
-    "w-full rounded-lg px-4 py-3 font-semibold transition duration-200";
+  const base = `
+    ${fullWidth ? "w-full" : "w-auto"}
+    inline-flex
+    items-center
+    justify-center
+    rounded-lg
+    px-4
+    py-2.5
+    font-medium
+    transition-all
+    duration-200
+    whitespace-nowrap
+    shadow-sm
+  `;
 
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-    danger: "bg-red-600 text-white hover:bg-red-700",
+    primary:
+      "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md",
+    secondary:
+      "bg-gray-100 text-gray-700 hover:bg-gray-200",
+    danger:
+      "bg-red-600 text-white hover:bg-red-700 hover:shadow-md",
   };
 
   return (
