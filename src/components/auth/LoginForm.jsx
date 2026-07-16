@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
-  
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -25,12 +26,39 @@ function LoginForm() {
 
   setErrors(newErrors);
 
-  if (Object.keys(newErrors).length > 0) return;
+if (Object.keys(newErrors).length > 0) return;
 
-  console.log({
-    email,
-    password,
-  });
+// Read registered user
+const savedUser = JSON.parse(
+  localStorage.getItem("workspacehub-user")
+);
+
+if (!savedUser) {
+  toast.error("No account found. Please register first.");
+  return;
+}
+
+// Check email
+if (savedUser.email !== email) {
+  toast.error("Email is incorrect.");
+  return;
+}
+
+// Check password
+if (savedUser.password !== password) {
+  toast.error("Password is incorrect.");
+  return;
+}
+
+// Save current logged in user
+localStorage.setItem(
+  "workspacehub-current-user",
+  JSON.stringify(savedUser)
+);
+
+toast.success("Login Successful!");
+
+navigate("/dashboard");
 };
   return (
     <div className="flex flex-1 items-center justify-center bg-gray-50 p-8">

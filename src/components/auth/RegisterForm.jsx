@@ -1,6 +1,69 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 function RegisterForm() {
+  const navigate = useNavigate();
+
+const [formData, setFormData] = useState({
+  company: "",
+  admin: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const {
+    company,
+    admin,
+    email,
+    password,
+    confirmPassword,
+  } = formData;
+
+  // Check empty fields
+  if (
+    !company ||
+    !admin ||
+    !email ||
+    !password ||
+    !confirmPassword
+  ) {
+    toast.error("Please fill all fields.");
+    return;
+  }
+
+  // Check password match
+  if (password !== confirmPassword) {
+    toast.error("Passwords do not match.");
+    return;
+  }
+
+  // Save user
+  const user = {
+    company,
+    admin,
+    email,
+    password,
+  };
+
+  localStorage.setItem(
+    "workspacehub-user",
+    JSON.stringify(user)
+  );
+
+  toast.success("Account created successfully!");
+
+  navigate("/login");
+};
   return (
     <div className="flex flex-1 items-center justify-center bg-gray-50 p-8">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
@@ -13,18 +76,23 @@ function RegisterForm() {
           Create your company account to get started.
         </p>
 
-        <form className="mt-8 space-y-5">
-
+<form
+  onSubmit={handleSubmit}
+  className="mt-8 space-y-5"
+>
           <div>
             <label className="mb-2 block text-sm font-medium">
               Company Name
             </label>
 
             <input
-              type="text"
-              placeholder="ABC Technologies"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
-            />
+  type="text"
+  name="company"
+  value={formData.company}
+  onChange={handleChange}
+  placeholder="ABC Technologies"
+  className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+/>
           </div>
 
           <div>
@@ -34,6 +102,9 @@ function RegisterForm() {
 
             <input
               type="text"
+              name="admin"
+              value={formData.admin}
+              onChange={handleChange}
               placeholder="Bibisha Kharel"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
             />
@@ -45,10 +116,13 @@ function RegisterForm() {
             </label>
 
             <input
-              type="email"
-              placeholder="bibisha@gmail.com"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
-            />
+  type="email"
+  name="email"
+  value={formData.email}
+  onChange={handleChange}
+  placeholder="bibisha@gmail.com"
+  className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+/>
           </div>
 
           <div>
@@ -57,10 +131,13 @@ function RegisterForm() {
             </label>
 
             <input
-              type="password"
-              placeholder="********"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
-            />
+  type="password"
+  name="password"
+  value={formData.password}
+  onChange={handleChange}
+  placeholder="********"
+  className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+/>
           </div>
 
           <div>
@@ -68,16 +145,20 @@ function RegisterForm() {
               Confirm Password
             </label>
 
-            <input
-              type="password"
-              placeholder="********"
-              className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
-            />
+           <input
+  type="password"
+  name="confirmPassword"
+  value={formData.confirmPassword}
+  onChange={handleChange}
+  placeholder="********"
+  className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+/>
           </div>
 
           <button
-            className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
-          >
+  type="submit"
+  className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+>
             Create Workspace
           </button>
 

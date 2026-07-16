@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+import { Routes, Route } from "react-router-dom"; 
 
 import MainLayout from "../layouts/MainLayout";
 
@@ -11,7 +12,7 @@ import Projects from "../pages/Projects/Projects";
 import Tasks from "../pages/Tasks/Tasks";
 import Profile from "../pages/Profile/Profile";
 import NotFound from "../pages/Error/NotFound";
-
+import Settings from "../pages/Settings/Settings";
 
 function AppRoutes() {
   return (
@@ -27,13 +28,59 @@ function AppRoutes() {
       <Route path="/register" element={<Register />} />
 
       {/* Dashboard */}
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/employees" element={<Employees />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/tasks" element={<Tasks />} />
-      <Route path="/profile" element={<Profile />} />
+     <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
 
+<Route
+  path="/employees"
+  element={
+    <ProtectedRoute>
+      <Employees />
+    </ProtectedRoute>
+  }
+/>
 
+<Route
+  path="/projects"
+  element={
+    <ProtectedRoute>
+      <Projects />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/tasks"
+  element={
+    <ProtectedRoute>
+      <Tasks />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/settings"
+  element={
+    <ProtectedRoute>
+      <Settings />
+    </ProtectedRoute>
+  }
+/>
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
 
